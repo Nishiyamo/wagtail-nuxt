@@ -53,9 +53,12 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "rest_framework",
+    "wagtail_headless_preview",
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
+
     "django.contrib.sessions.middleware.SessionMiddleware",
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
@@ -64,6 +67,8 @@ MIDDLEWARE = [
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
     "django.middleware.security.SecurityMiddleware",
     "wagtail.contrib.redirects.middleware.RedirectMiddleware",
+    "corsheaders.middleware.CorsMiddleware",
+    "django.middleware.common.CommonMiddleware"
 ]
 
 ROOT_URLCONF = "backend.urls"
@@ -172,3 +177,12 @@ WAGTAILSEARCH_BACKENDS = {
 # Base URL to use when referring to full URLs within the Wagtail admin backend -
 # e.g. in notification emails. Don't include '/admin' or a trailing slash
 WAGTAILADMIN_BASE_URL = "http://example.com"
+
+WAGTAIL_HEADLESS_PREVIEW = {
+    "CLIENT_URLS": {
+        "default": "http://localhost:8020",
+    }
+}
+
+CORS_ORIGIN_ALLOW_ALL = True
+CORS_URLS_REGEX = r"^/api/v2/"
